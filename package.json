@@ -1,22 +1,20 @@
 {
-  "name": "umi-plugin-mf-bootstrap",
-  "version": "0.0.2",
+  "name": "umi-plugin-mf-bootstrap-r",
+  "version": "0.0.1",
   "scripts": {
-    "start": "dumi dev",
-    "docs:build": "dumi build",
-    "docs:deploy": "gh-pages -d docs-dist",
     "build": "father-build",
-    "deploy": "npm run docs:build && npm run docs:deploy",
     "release": "npm run build && npm publish",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
-    "test": "umi-test",
     "test:coverage": "umi-test --coverage"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "typings": "dist/index.d.ts",
-  "gitHooks": {
-    "pre-commit": "lint-staged"
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "src",
+    "ui"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
@@ -26,20 +24,19 @@
       "prettier --parser=typescript --write"
     ]
   },
-  "dependencies": {
-    "react": "^16.12.0"
-  },
   "devDependencies": {
     "@umijs/test": "^3.0.5",
-    "dumi": "^1.0.16",
     "father-build": "^1.17.2",
-    "gh-pages": "^3.0.0",
     "lint-staged": "^10.0.7",
     "prettier": "^2.2.1",
-    "yorkie": "^2.0.0"
+    "yorkie": "^2.0.0",
+    "@umijs/types": "^3.0.0",
+    "cross-env": "^6.0.3",
+    "np": "^5.0.3",
+    "umi": "^3.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jiechud/umi-plugin-mf-bootstrap.git"
+    "url": "git+https://github.com/minisola/umi-plugin-mf-bootstrap.git"
   }
 }
