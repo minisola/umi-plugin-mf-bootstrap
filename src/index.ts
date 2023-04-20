@@ -10,6 +10,10 @@ export default (api: IApi) => {
         : './src/.umi/umi.ts';
     const buffer = readFileSync(resolve(path));
     const c = String(buffer);
+    // 防止热更新重复覆盖
+    if(c.includes('const { bootstrap, mount, unmount, update } = await import("./index")')){
+      return
+    }
     api.writeTmpFile({
       path: 'index.ts',
       content: c,
@@ -17,8 +21,8 @@ export default (api: IApi) => {
     api.writeTmpFile({
       path: 'umi.ts',
       content: `
-const { bootstrap, mount, unmount } = await import("./index")
-export { bootstrap, mount, unmount }
+const { bootstrap, mount, unmount, update } = await import("./index")
+export { bootstrap, mount, unmount, update }
       `,
     });
   });
